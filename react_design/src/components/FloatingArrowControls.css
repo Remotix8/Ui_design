@@ -1,0 +1,78 @@
+.floating-arrow-controls {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.arrow-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.arrow-button {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background-color: #C0D2F0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+
+.arrow-button.active {
+  background-color: #4880FF;
+}
+
+.arrow-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform: scale(1);
+}
+
+/* Up arrow */
+.arrow-button.up .arrow-icon {
+  border-width: 0 12px 20px 12px;
+  border-color: transparent transparent #FFFFFF transparent;
+}
+
+/* Down arrow */
+.arrow-button.down .arrow-icon {
+  border-width: 20px 12px 0 12px;
+  border-color: #FFFFFF transparent transparent transparent;
+}
+
+/* Left arrow */
+.arrow-button.left .arrow-icon {
+  border-width: 12px 20px 12px 0;
+  border-color: transparent #FFFFFF transparent transparent;
+}
+
+/* Right arrow */
+.arrow-button.right .arrow-icon {
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #FFFFFF;
+}
+
+.arrow-button:hover {
+  opacity: 0.9;
+}
+
+.arrow-button:focus {
+  outline: none;
+}
+
+.arrow-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #E9ECEF;
+} 

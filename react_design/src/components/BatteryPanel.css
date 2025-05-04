@@ -1,0 +1,47 @@
+.battery-container {
+  position: relative;
+}
+
+.battery-panel {
+  position: absolute;
+  left: 1445px;
+  top: 30px;
+  width: 180px;
+  height: 70px;
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.battery-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.battery-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.battery-label {
+  font-size: 14px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.battery-percentage {
+  font-size: 32px;
+  font-weight: 600;
+  color: #202224;
+}
+
+.battery-icon {
+  font-size: 50px;
+  color: #202224;
+  display: flex;
+  align-items: center;
+} 

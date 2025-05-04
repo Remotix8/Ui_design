@@ -1,0 +1,104 @@
+.topic-container {
+  position: relative;
+}
+
+.topic-panel {
+  position: absolute;
+  left: 1000px;
+  top: 30px;
+  width: 375px;
+  height: 360px;
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.panel-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #202224;
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+.topic-list {
+  height: calc(100% - 44px);
+  overflow-y: auto;
+}
+
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #F8F9FA;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.topic-item:hover {
+  background-color: #F1F3F5;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.star-icon {
+  font-size: 16px;
+  color: #DDE0E4;
+}
+
+.star-icon.filled {
+  color: #FFD43B;
+}
+
+.category-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333333;
+  text-transform: lowercase;
+  min-width: 60px;
+  text-align: center;
+}
+
+.topic-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 스크롤바 스타일링 */
+.topic-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.topic-list::-webkit-scrollbar-track {
+  background: #F1F3F5;
+  border-radius: 3px;
+}
+
+.topic-list::-webkit-scrollbar-thumb {
+  background: #DDE0E4;
+  border-radius: 3px;
+}
+
+.topic-list::-webkit-scrollbar-thumb:hover {
+  background: #C5C8CD;
+} 

@@ -1,0 +1,47 @@
+.speed-container {
+  position: relative;
+}
+
+.speed-panel {
+  position: absolute;
+  left: 1445px;
+  top: 165px;  /* 배터리 패널(110px) + 간격(50px) */
+  width: 180px;
+  height: 70px;
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.speed-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.speed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.speed-label {
+  font-size: 14px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.speed-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: #202224;
+}
+
+.speed-icon {
+  font-size: 48px;
+  color: #202224;
+  display: flex;
+  align-items: center;
+} 
