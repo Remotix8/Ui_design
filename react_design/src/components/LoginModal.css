@@ -1,0 +1,101 @@
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: auto;
+  }
+  
+  .login-modal-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3); /* 반투명 배경 */
+    z-index: -1;
+    pointer-events: all; /* 클릭 차단 */
+  }
+
+  .login-modal {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+  }
+  
+  .login-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+  
+  .login-input {
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .login-button {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+  }
+  
+  .login-button:hover {
+    background-color: #e14b4f;
+  }
+  
+  .signup-link {
+    text-align: center;
+    font-size: 12px;
+    color: #007bff;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
+  .close-button {
+    background-color: #f2f2f2;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #e0e0e0;
+  }
+
+  .login-logo {
+    height: 40px;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  

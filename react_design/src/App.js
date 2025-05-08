@@ -7,15 +7,49 @@ import TopicPanel from './components/TopicPanel';
 import BatteryPanel from './components/BatteryPanel';
 import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
+import LoginModal from './components/LoginModal';
 
 function App() {
   // 설정 모달 오픈 상태 관리
   const [isSettingsOpen, setSettingsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <div className="App">
+
+      
+
       {/* 네비게이션에 onOpenSettings prop 전달 */}
-      <Navigation onOpenSettings={() => setSettingsOpen(true)} />
+      <Navigation 
+      onOpenSettings={() => setSettingsOpen(true)}
+      isLogin={isLogin}
+        userId={userId}
+        onLoginClick={() => setShowLoginModal(true)}
+        onLogout={() => {
+          setIsLogin(false);
+          setUserId('');
+        }}
+      />
+
+      {/* 로그인 모달 */}
+      {showLoginModal && (
+        <>
+        <div className="global-lock-screen"></div>
+
+        
+        <LoginModal
+          onClose={() => setShowLoginModal(false)}
+          onLogin={(id) => {
+            setIsLogin(true);
+            setUserId(id);
+            setShowLoginModal(false);
+          }}
+        />
+        </>
+      )}
+      
 
       {/* 각 패널 컴포넌트 */}
       <StreamPanel />
@@ -28,6 +62,9 @@ function App() {
       {isSettingsOpen && (
         <SettingsModal onClose={() => setSettingsOpen(false)} />
       )}
+
+      
+
     </div>
   );
 }
