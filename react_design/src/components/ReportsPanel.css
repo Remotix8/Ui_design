@@ -38,7 +38,7 @@
   font-size: 0.75rem;
   position: absolute;
   top: 22px;
-  left: 72px; /* Report 텍스트 넓이에 맞게 조정 */
+  left: 120px; /* Report 텍스트 넓이에 맞게 조정 */
 }
 
 /* 리스트 영역 — flex:1로 남은 높이 채우고 내부 스크롤 */
