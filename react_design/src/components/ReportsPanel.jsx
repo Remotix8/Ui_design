@@ -23,7 +23,7 @@ export default function ReportsPanel({ reports }) {
   return (
     <div className="reports-panel">
       <div className="reports-header">
-        <span className="reports-title">리포트</span>
+        <span className="reports-title">Report List</span>
         {pendingCount > 0 && <span className="badge">{pendingCount}</span>}
       </div>
       <ul className="reports-list">
