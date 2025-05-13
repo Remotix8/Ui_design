@@ -8,6 +8,8 @@ import BatteryPanel from './components/BatteryPanel';
 import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
 import LoginModal from './components/LoginModal';
+import RegisterModal from './components/RegisterModal';
+
 
 function App() {
   // 설정 모달 오픈 상태 관리
@@ -15,6 +17,8 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userId, setUserId] = useState('');
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
 
   return (
     <div className="App">
@@ -36,17 +40,33 @@ function App() {
       {/* 로그인 모달 */}
       {showLoginModal && (
         <>
-        <div className="global-lock-screen"></div>
+          <div className="global-lock-screen" />
+          <LoginModal
+            onClose={() => setShowLoginModal(false)}
+            onLogin={(id) => {
+              setIsLogin(true);
+              setUserId(id);
+              setShowLoginModal(false);
+            }}
+            onSwitchToRegister={() => {
+              setShowLoginModal(false);
+              setShowRegisterModal(true);
+            }}
+          />
+        </>
+      )}
 
-        
-        <LoginModal
-          onClose={() => setShowLoginModal(false)}
-          onLogin={(id) => {
-            setIsLogin(true);
-            setUserId(id);
-            setShowLoginModal(false);
-          }}
-        />
+      {/* 회원가입 모달 */}
+      {showRegisterModal && (
+        <>
+          <div className="global-lock-screen" />
+          <RegisterModal
+            onClose={() => setShowRegisterModal(false)}
+            onSwitchToLogin={() => {
+              setShowRegisterModal(false);
+              setShowLoginModal(true);
+            }}
+          />
         </>
       )}
       
