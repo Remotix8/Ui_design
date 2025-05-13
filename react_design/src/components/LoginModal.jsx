@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./LoginModal.css";
 import logo from '../assets/images/logo.png';
 
-function LoginModal({ onClose, onLogin }) {
+function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
@@ -41,9 +41,13 @@ function LoginModal({ onClose, onLogin }) {
           로그인
         </button>
 
-        <p className="signup-link" onClick={() => alert("회원가입 페이지로 이동")}>
+        <p
+          className="signup-link"
+          onClick={onSwitchToRegister} // props로 전달받은 함수
+        >
           회원가입
         </p>
+
 
         <button className="close-button" onClick={onClose}>
           닫기
