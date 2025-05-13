@@ -8,8 +8,9 @@ import BatteryPanel from './components/BatteryPanel';
 import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
 import LoginModal from './components/LoginModal';
-import RegisterModal from './components/RegisterModal';
+import RegisterModal from './components/RegisterModal';  
 import ProfilePopup from './components/ProfilePopup';
+
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   const profileUrl = "/assets/images/sample_profile.png"; // 예시 이미지
+
 
 
 

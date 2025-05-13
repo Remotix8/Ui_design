@@ -48,8 +48,6 @@ function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
           회원가입
         </p>
 
-
-        
       </div>
     </div>
   );

@@ -66,6 +66,7 @@ function RegisterModal({ onClose, onSwitchToLogin }) {
         </button>
         
         <button className="close-button" onClick={onSwitchToLogin}>로그인하기</button>
+
       </div>
     </div>
   );
