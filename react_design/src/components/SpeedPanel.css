@@ -4,7 +4,7 @@
 
 .speed-panel {
   position: absolute;
-  left: 1140px;
+  left: 1138px;
   top: 325px;  /* 배터리 패널(110px) + 간격(50px) */
   width: 120px;
   height: 120px;

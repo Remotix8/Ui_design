@@ -13,7 +13,7 @@ import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
 
 import ReportCard from './components/ReportCard';
-import NotificationCard from './components/NotificationCard';
+import NotificationCard from './components/ReportsPanel';
 
 function App() {
   const [isSettingsOpen, setSettingsOpen] = useState(false);

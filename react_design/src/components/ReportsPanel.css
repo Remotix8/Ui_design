@@ -1,0 +1,70 @@
+/* 전체 패널 컨테이너 */
+.reports-panel {
+  position: absolute;
+  top: 20px;
+  left: 1135px;          /* 필요에 맞게 조정하세요 */
+  width: 320px;
+  height: 265px;
+
+  /* 카드 스타일 */
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* 내부 여백 + 레이아웃 */
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* 헤더(제목 + 뱃지) */
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reports-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #202224;
+}
+.badge {
+  background-color: #fa5252; /* blue-600 */
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  position: absolute;
+  top: 22px;
+  left: 72px; /* Report 텍스트 넓이에 맞게 조정 */
+}
+
+/* 리스트 영역 — flex:1로 남은 높이 채우고 내부 스크롤 */
+.reports-list {
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style: none;
+
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 리스트 아이템 */
+.report-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+.report-text {
+  flex: 1;
+  color: #202224;
+}
+.report-time {
+  margin-left: 8px;
+  font-size: 0.75rem;
+  color: #6b7280;
+}

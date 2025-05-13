@@ -63,7 +63,13 @@
   padding: 10px 0;
 }
 
-.recognition-result {
+.recognition-person {
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.recognition-car {
   font-size: 16px;
   color: #333;
   text-align: left;

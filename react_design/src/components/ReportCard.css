@@ -38,19 +38,6 @@
   font-weight: 600;
 }
 
-.badge {
-  background-color: #dc2626; /* red-600 */
-  color: #fff;
-  border-radius: 9999px;
-  padding: 0 8px;
-  font-size: 0.875rem;
-
-  /* 위치 조정: Report 레이블 옆으로 이동 */
-   position: absolute;
-   top: 23px;
-   left: 90px; /* Report 텍스트 넓이에 맞게 조정 */
-}
-
 /* Write button next to badge */
 .btn-primary {
   position: absolute;
