@@ -4,10 +4,10 @@
 
 .speed-panel {
   position: absolute;
-  left: 1445px;
-  top: 165px;  /* 배터리 패널(110px) + 간격(50px) */
-  width: 180px;
-  height: 70px;
+  left: 1140px;
+  top: 325px;  /* 배터리 패널(110px) + 간격(50px) */
+  width: 120px;
+  height: 120px;
   background-color: white;
   border-radius: 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@
 .speed-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .speed-label {
@@ -34,13 +34,13 @@
 }
 
 .speed-value {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 600;
   color: #202224;
 }
 
 .speed-icon {
-  font-size: 48px;
+  font-size: 40px;
   color: #202224;
   display: flex;
   align-items: center;

@@ -1,49 +1,47 @@
-.App {
-  min-height: 100vh;
-  background-color: #F5F5F5;
-  padding-top: 70px;
-}
+/* src/App.css */
 
+/* Global Styles */
 body {
   margin: 0;
   padding: 0;
   background-color: #F5F5F5;
+  font-family: sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: calc(100vh - 70px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px;
-  margin-bottom: 20px;
+.App {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+  padding-top: 70px; /* 헤더 높이 만큼 패딩 */
+  box-sizing: border-box;
 }
 
-.App-header h1 {
-  margin: 0;
-  font-size: 2em;
-}
-
-main {
-  padding: 20px;
-} 
-
+/* Overlay for Login Modal */
 .global-lock-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: 999;
-  background-color: transparent; /* 그대로 두거나 */
+  background-color: transparent;
   pointer-events: all;
 }
 
+/* Dashboard Container: grid layout + relative for absolute cards */
+.dashboard {
+  position: relative;
+}
 
-.locked-ui {
-  pointer-events: none;
+/* Common Card Styles */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+/* Status Panels (Battery, Speed, Teleop) */
+.dashboard__panels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

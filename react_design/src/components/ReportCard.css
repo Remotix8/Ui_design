@@ -1,0 +1,70 @@
+/* src/components/ReportCard.css */
+
+/* Container for ReportCard */
+.report-card {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  width: 415px;
+  height: 210px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+/* Title at top-left */
+.report-card::before {
+  content: "Report";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #202224;      /* 진한 텍스트 색상으로 설정 */
+  z-index: 10;
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px; /* space below title */
+}
+
+.report-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.badge {
+  background-color: #dc2626; /* red-600 */
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0 8px;
+  font-size: 0.875rem;
+
+  /* 위치 조정: Report 레이블 옆으로 이동 */
+   position: absolute;
+   top: 23px;
+   left: 90px; /* Report 텍스트 넓이에 맞게 조정 */
+}
+
+/* Write button next to badge */
+.btn-primary {
+  position: absolute;
+  top: 16px;
+  right: 20px; /* adjust to sit left of badge */
+  background-color: #ff5d5d; /* indigo-800 */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #f94646; /* indigo-900 */
+}

@@ -1,7 +1,9 @@
 .floating-arrow-controls {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+  position: absolute;
+  left: 500px;
+  top: 530px;
+  bottom: 60px;
+  right: 60px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -15,11 +17,11 @@
 }
 
 .arrow-button {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border: none;
   border-radius: 50%;
-  background-color: #C0D2F0;
+  background-color: #f7c7cf;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -29,7 +31,7 @@
 }
 
 .arrow-button.active {
-  background-color: #4880FF;
+  background-color: #F77777;
 }
 
 .arrow-icon {

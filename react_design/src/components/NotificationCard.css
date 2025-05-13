@@ -1,0 +1,88 @@
+/* src/components/NotificationCard.css */
+
+/* Container for notification card in topRow */
+.notification-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 350px;      /* 원하는 너비로 조정 */
+  height: 300px;
+  overflow-y: auto;
+  top: 20px;
+  left: 1140px; 
+}
+
+/* Title at top-left */
+.notification-card::before {
+  content: "Notification";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #202224;      /* 진한 텍스트 색상으로 설정 */
+  z-index: 10;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.notif-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.notification-card .badge {
+  background-color: #dc2626; /* red-600 */
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0 8px;
+  font-size: 0.875rem;
+
+  /* 위치: Notification 텍스트 옆으로 이동 */
+  position: absolute;
+  top: 21px;
+  left: 136px; /* 'Notification' 옆에 오도록 조정 (필요시 값 수정) */
+}
+
+.notif-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+
+.notif-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.notif-text {
+  flex: 1;
+}
+
+.notif-time {
+  font-size: 0.75rem;
+  color: #6b7280; /* gray-500 */
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #374151; /* gray-700 */
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  align-self: flex-start;
+}
+
+.btn-secondary:hover {
+  background-color: #f3f4f6; /* gray-100 */
+}

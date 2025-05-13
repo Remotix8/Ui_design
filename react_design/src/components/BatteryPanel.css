@@ -4,10 +4,10 @@
 
 .battery-panel {
   position: absolute;
-  left: 1445px;
-  top: 30px;
-  width: 180px;
-  height: 70px;
+  left: 1330px;
+  top: 340px;
+  width: 120px;
+  height: 120px;
   background-color: white;
   border-radius: 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@
 .battery-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .battery-label {
@@ -34,13 +34,13 @@
 }
 
 .battery-percentage {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 600;
   color: #202224;
 }
 
 .battery-icon {
-  font-size: 50px;
+  font-size: 40px;
   color: #202224;
   display: flex;
   align-items: center;
