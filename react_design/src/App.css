@@ -38,8 +38,12 @@ main {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999; /* LoginModal은 1000으로 유지 */
-  background-color: transparent; /* 클릭만 막고 시각적으로는 투명 */
-  pointer-events: all; /* 클릭 차단 */
+  z-index: 999;
+  background-color: transparent; /* 그대로 두거나 */
+  pointer-events: all;
 }
 
+
+.locked-ui {
+  pointer-events: none;
+}

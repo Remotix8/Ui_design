@@ -4,7 +4,7 @@ import { FaCog, FaBell } from 'react-icons/fa';
 import logo from '../assets/images/logo.png';
 
 // onOpenSettings prop을 받아 환경설정 버튼 클릭 시 콜백 호출
-const Navigation = ({ onOpenSettings, isLogin, userId, onLoginClick, onLogout  }) => {
+const Navigation = ({ onOpenSettings, isLogin, userId, onLoginClick, onLogout, profileUrl, showProfilePopup, setShowProfilePopup }) => {
   return (
     <nav className="navigation">
       <div className="nav-left">
@@ -15,6 +15,14 @@ const Navigation = ({ onOpenSettings, isLogin, userId, onLoginClick, onLogout  }
         {/* ✅ 로그인 상태에 따라 표시되는 부분 */}
         {isLogin ? (
           <>
+
+            <img
+              src={profileUrl}
+              alt="profile"
+              className="nav-profile-pic"
+              onClick={() => setShowProfilePopup(!showProfilePopup)}
+            />
+
             {/* 로그인 시: 유저 ID + 로그아웃 버튼 */}
             <span className="nav-user">{userId}</span>
             <button className="nav-text-button" onClick={onLogout}>

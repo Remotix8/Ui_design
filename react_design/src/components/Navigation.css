@@ -75,3 +75,12 @@
 .nav-text-button:hover {
   background-color: #f0f0f0;
 }
+
+.nav-profile-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  cursor: pointer;
+}
