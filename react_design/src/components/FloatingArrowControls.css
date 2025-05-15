@@ -1,9 +1,7 @@
 .floating-arrow-controls {
   position: absolute;
-  left: 500px;
+  left: 910px;
   top: 530px;
-  bottom: 60px;
-  right: 60px;
   display: flex;
   flex-direction: column;
   gap: 8px;
