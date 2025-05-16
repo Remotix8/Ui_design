@@ -1,7 +1,7 @@
 .floating-arrow-controls {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+  position: absolute;
+  left: 910px;
+  top: 530px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -19,7 +19,7 @@
   height: 60px;      
   border: none;
   border-radius: 50%;
-  background-color: #f59fac;
+  background-color: #f7c7cf;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
 }
 
 .arrow-button.active {
-  background-color: #4880FF;
+  background-color: #F77777;
 }
 
 /* 화살표 아이콘은 다시 -45도 회전하여 원래 방향 유지 */

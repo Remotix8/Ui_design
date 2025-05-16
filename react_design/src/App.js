@@ -2,79 +2,136 @@ import React, { useState } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import SettingsModal from './components/SettingsModal';
+import LoginModal from './components/LoginModal';
+import RegisterModal from './components/RegisterModal';
+import ProfilePopup from './components/ProfilePopup';
+
 import StreamPanel from './components/StreamPanel';
 import TopicPanel from './components/TopicPanel';
 import BatteryPanel from './components/BatteryPanel';
 import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
-import LoginModal from './components/LoginModal';
 import ReportModal from "./components/Report";
-import { FaRegFileAlt } from 'react-icons/fa';
-
-
+import ReportCard from './components/ReportCard';
+import NotificationCard from './components/ReportsPanel';
 
 function App() {
-  // 설정 모달 오픈 상태 관리
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [userId, setUserId] = useState('');
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showProfilePopup, setShowProfilePopup] = useState(false);
+  const profileUrl = "/assets/images/sample_profile.png";
+  // 모달 상태 추가
+  const [isReportModalOpen, setReportModalOpen] = useState(false);
+
 
   return (
-    <div className="App">
-      {/* 네비게이션에 onOpenSettings prop 전달 */}
-      <Navigation 
-      onOpenSettings={() => setSettingsOpen(true)}
-      isLogin={isLogin}
-        userId={userId}
-        onLoginClick={() => setShowLoginModal(true)}
-        onLogout={() => {
-          setIsLogin(false);
-          setUserId('');
-        }}
-      />
-
-      {/* 로그인 모달 */}
+    <div className={`App ${showLoginModal || showRegisterModal ? 'locked-ui' : ''}`}>
+      {/* 로그인/회원가입 모달 띄우기 (화면 잠금) */}
       {showLoginModal && (
         <>
-        <div className="global-lock-screen"></div>
-
-        
-        <LoginModal
-          onClose={() => setShowLoginModal(false)}
-          onLogin={(id) => {
-            setIsLogin(true);
-            setUserId(id);
-            setShowLoginModal(false);
-          }}
-        />
+          <div className="global-lock-screen" />
+          <LoginModal
+            onClose={() => setShowLoginModal(false)}
+            onLogin={(id) => {
+              setIsLogin(true);
+              setUserId(id);
+              setShowLoginModal(false);
+            }}
+            onSwitchToRegister={() => {
+              setShowLoginModal(false);
+              setShowRegisterModal(true);
+            }}
+          />
         </>
       )}
-      
 
-      {/* 각 패널 컴포넌트 */}
-      <StreamPanel />
-      <TopicPanel />
-      <BatteryPanel />
-      <SpeedPanel />
-      <PlatformControlPanel />
 
-      {isSettingsOpen && (
-        <SettingsModal onClose={() => setSettingsOpen(false)} />
+      {showRegisterModal && (
+        <>
+          <div className="global-lock-screen" />
+          <RegisterModal
+            onClose={() => setShowRegisterModal(false)}
+            onSwitchToLogin={() => {
+              setShowRegisterModal(false);
+              setShowLoginModal(true);
+            }}
+          />
+        </>
       )}
 
-      {/* 보고서 작성 버튼 (좌측 하단 고정) */}
-      <div className="report-button-wrapper">
-        <button className="custom-report-button" onClick={() => setIsModalOpen(true)}>
-          <FaRegFileAlt className="report-icon" />
-          <span>보고서 작성</span>
-        </button>
-      </div>
-      
+      {/* 로그인 상태라면 메인 UI 렌더링 */}
+      {isLogin && (
+        <>
+          <Navigation
+            onOpenSettings={() => setSettingsOpen(true)}
+            isLogin={isLogin}
+            userId={userId}
+            profileUrl={profileUrl}
+            onLoginClick={() => setShowLoginModal(true)}
+            onLogout={() => {
+              setIsLogin(false);
+              setUserId('');
+              setShowLoginModal(true);
+            }}
+            showProfilePopup={showProfilePopup}
+            setShowProfilePopup={setShowProfilePopup}
+          />
 
-      {/* 보고서 모달 */}
-      <ReportModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+          {showProfilePopup && (
+            <ProfilePopup
+              userId={userId}
+              profileUrl={profileUrl}
+              onClose={() => setShowProfilePopup(false)}
+            />
+          )}
+
+          <main className="dashboard">
+            <section className="dashboard__left">
+              <StreamPanel />
+            </section>
+
+            <aside className="dashboard__right">
+              <div className="dashboard__topRow">
+                <ReportCard
+                  pendingCount={3}
+                  //Report모달 열기기
+                  onWriteClick={() => setReportModalOpen(true)}
+                />
+                <NotificationCard
+                  notifications={[
+                    { message: '배터리 경고: 15%', time: '2m ago', type: 'warning', read: false },
+                    { message: '원격조작 요청 #1234', time: '5m ago', type: 'info', read: false },
+                  ]}
+                  onViewAll={() => console.log('View all notifications')}
+                />
+              </div>
+
+              <div className="dashboard__topic">
+                <TopicPanel />
+              </div>
+
+              <div className="dashboard__panels">
+                <BatteryPanel />
+                <SpeedPanel />
+                <PlatformControlPanel />
+              </div>
+            </aside>
+          </main>
+
+          {isSettingsOpen && (
+            <SettingsModal onClose={() => setSettingsOpen(false)} />
+          )}
+
+          {/* ReportModal 렌더링 */}
+          {isReportModalOpen && (
+            <ReportModal isOpen={isReportModalOpen} onClose={() => setReportModalOpen(false)} />
+      )}
+
+        </>
+      )}
     </div>
   );
 }

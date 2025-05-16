@@ -4,8 +4,8 @@
 
 .topic-panel {
   position: absolute;
-  left: 1000px;
-  top: 30px;
+  left: 40px;
+  top: 250px;
   width: 375px;
   height: 360px;
   background-color: white;
@@ -32,7 +32,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background-color: #F8F9FA;
+  background-color: #FFF6F9;
   border-radius: 8px;
   margin-bottom: 8px;
   font-size: 14px;
@@ -42,7 +42,7 @@
 }
 
 .topic-item:hover {
-  background-color: #F1F3F5;
+  background-color: #FBECF0;
 }
 
 .favorite-button {
@@ -59,11 +59,11 @@
 
 .star-icon {
   font-size: 16px;
-  color: #DDE0E4;
+  color: #FA5252;
 }
 
 .star-icon.filled {
-  color: #FFD43B;
+  color: #FA5252;
 }
 
 .category-badge {

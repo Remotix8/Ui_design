@@ -1,40 +1,47 @@
-/* 왼쪽 하단 고정 */
-.report-button-wrapper {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1000;
+/* src/App.css */
+
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F5F5F5;
+  font-family: sans-serif;
 }
 
-/* 사용자 정의 보고서 버튼 */
-.custom-report-button {
+.App {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+  padding-top: 70px; /* 헤더 높이 만큼 패딩 */
+  box-sizing: border-box;
+}
+
+/* Overlay for Login Modal */
+.global-lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: transparent;
+  pointer-events: all;
+}
+
+/* Dashboard Container: grid layout + relative for absolute cards */
+.dashboard {
+  position: relative;
+}
+
+/* Common Card Styles */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+/* Status Panels (Battery, Speed, Teleop) */
+.dashboard__panels {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  width: 100px;
-  height: 100px;
-
-  background-color: #ff6b6b;
-  border: none;
-  border-radius: 12px;
-
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.custom-report-button:hover {
-  background-color: #ff6b6b; /* hover 시에도 동일한 색상 유지 */
-}
-
-.report-icon {
-  width: 36px;
-  height: 36px;
-  margin-bottom: 6px;
+  gap: 16px;
 }

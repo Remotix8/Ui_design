@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import './Report.css';
 
 export default function ReportModal({ isOpen, onClose }) {
-  // useState는 컴포넌트 함수 내에서 항상 호출되어야 합니다.
   const [formData, setFormData] = useState({
     receptionId: "",
     reporterName: "",
@@ -12,7 +11,6 @@ export default function ReportModal({ isOpen, onClose }) {
     actionDetails: ""
   });
 
-  // early return을 통해 모달이 닫힐 때 렌더링을 중단합니다.
   if (!isOpen) return null;
 
   const handleChange = (e) => {
@@ -24,7 +22,7 @@ export default function ReportModal({ isOpen, onClose }) {
     e.preventDefault();  // 폼 제출 시 페이지 새로 고침 방지
     console.log("폼 제출 데이터:", formData);
     // 데이터 처리 로직 추가 (API 요청 등)
-    onClose(); // 제출 후 모달 닫기
+    onClose();
   };
 
   return (
@@ -70,7 +68,7 @@ export default function ReportModal({ isOpen, onClose }) {
 </div>
 
 <div className="form-group">
-  <label htmlFor="reporterModel">차량 모델</label> {/* 오타: 차량량모델 → 차량 모델 */}
+  <label htmlFor="reporterModel">차량 모델</label>
   <input
     type="text"
     id="reporterModel"
