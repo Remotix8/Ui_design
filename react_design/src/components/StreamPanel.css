@@ -30,7 +30,7 @@
 
 .camera-feed {
   width: 600px;
-  height: 400px;
+  height: 340px;
   background-color: #f5f5f5;
   border-radius: 10px;
   overflow: hidden;
@@ -45,7 +45,7 @@
 .divider {
   position: absolute;
   left: 500px;
-  top: 520px;
+  top: 455px;
   width: 590px;
   height: 1px;
   background-color: #E5E5E5;
@@ -54,7 +54,7 @@
 .recognition-info {
   position: absolute;
   left: 520px;
-  top: 520px;
+  top: 455px;
   width: 570px;
   display: flex;
   flex-direction: column;    /* ← 세로 스택 */
