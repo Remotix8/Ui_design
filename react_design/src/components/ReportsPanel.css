@@ -16,7 +16,7 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 500;
 }
 
 /* 헤더(제목 + 뱃지) */
