@@ -4,67 +4,87 @@
   right: 30px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
   z-index: 1000;
 }
 
 .arrow-row {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 2px;
 }
 
 .arrow-button {
-  width: 60px;
-  height: 60px;
+  width: 60px;       
+  height: 60px;      
   border: none;
   border-radius: 50%;
-  background-color: #C0D2F0;
+  background-color: #f59fac;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
   padding: 0;
+
+  /* 마름모 형태 만들기 위해 45도 회전 */
+  transform: rotate(45deg);
 }
 
 .arrow-button.active {
   background-color: #4880FF;
 }
 
+/* 화살표 아이콘은 다시 -45도 회전하여 원래 방향 유지 */
 .arrow-icon {
   width: 0;
   height: 0;
   border-style: solid;
-  transform: scale(1);
+  transform: scale(1) rotate(-45deg);
 }
 
-/* Up arrow */
+
 .arrow-button.up .arrow-icon {
   border-width: 0 12px 20px 12px;
   border-color: transparent transparent #FFFFFF transparent;
 }
 
-/* Down arrow */
 .arrow-button.down .arrow-icon {
   border-width: 20px 12px 0 12px;
   border-color: #FFFFFF transparent transparent transparent;
 }
 
-/* Left arrow */
 .arrow-button.left .arrow-icon {
   border-width: 12px 20px 12px 0;
   border-color: transparent #FFFFFF transparent transparent;
 }
 
-/* Right arrow */
 .arrow-button.right .arrow-icon {
   border-width: 12px 0 12px 20px;
   border-color: transparent transparent transparent #FFFFFF;
 }
 
+/* 가운데 빈 공간 */
+.arrow-row.center {
+  justify-content: center;
+  margin: 0;
+}
+
+.arrow-row.middle {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+
+.arrow-center-placeholder {
+  width: 50px;
+  height: 50px;
+}
+
+/* 호버, 포커스 등 기존 스타일 유지 */
 .arrow-button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .arrow-button:focus {
@@ -75,4 +95,4 @@
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #E9ECEF;
-} 
+}

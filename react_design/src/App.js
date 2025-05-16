@@ -8,6 +8,10 @@ import BatteryPanel from './components/BatteryPanel';
 import SpeedPanel from './components/SpeedPanel';
 import PlatformControlPanel from './components/PlatformControlPanel';
 import LoginModal from './components/LoginModal';
+import ReportModal from "./components/Report";
+import { FaRegFileAlt } from 'react-icons/fa';
+
+
 
 function App() {
   // 설정 모달 오픈 상태 관리
@@ -15,12 +19,10 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userId, setUserId] = useState('');
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="App">
-
-      
-
       {/* 네비게이션에 onOpenSettings prop 전달 */}
       <Navigation 
       onOpenSettings={() => setSettingsOpen(true)}
@@ -58,13 +60,21 @@ function App() {
       <SpeedPanel />
       <PlatformControlPanel />
 
-      {/* 설정 모달 조건부 렌더링 */}
       {isSettingsOpen && (
         <SettingsModal onClose={() => setSettingsOpen(false)} />
       )}
 
+      {/* 보고서 작성 버튼 (좌측 하단 고정) */}
+      <div className="report-button-wrapper">
+        <button className="custom-report-button" onClick={() => setIsModalOpen(true)}>
+          <FaRegFileAlt className="report-icon" />
+          <span>보고서 작성</span>
+        </button>
+      </div>
       
 
+      {/* 보고서 모달 */}
+      <ReportModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
