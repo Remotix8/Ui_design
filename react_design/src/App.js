@@ -5,7 +5,7 @@ import SettingsModal from './components/SettingsModal';
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
 import ProfilePopup from './components/ProfilePopup';
-
+import Clock from './components/Clock';
 import StreamPanel from './components/StreamPanel';
 import TopicPanel from './components/TopicPanel';
 import BatteryPanel from './components/BatteryPanel';
@@ -91,6 +91,10 @@ function App() {
           <main className="dashboard">
             <section className="dashboard__left">
               <StreamPanel />
+            </section>
+
+            <section className="dashboard__clock">
+              <Clock />
             </section>
 
             <aside className="dashboard__right">
