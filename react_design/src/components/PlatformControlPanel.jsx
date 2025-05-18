@@ -8,7 +8,8 @@ const PlatformControlPanel = () => {
     up: false,
     down: false,
     left: false,
-    right: false
+    right: false,
+    center: false
   });
 
   useEffect(() => {
@@ -94,7 +95,8 @@ const PlatformControlPanel = () => {
       up: false,
       down: false,
       left: false,
-      right: false
+      right: false,
+      center: false
     });
   };
 

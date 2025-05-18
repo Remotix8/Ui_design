@@ -77,6 +77,22 @@
   gap: 4px;
 }
 
+/* 가운데 정사각형 버튼 */
+.arrow-button.center {
+  transform: none;  /* 회전 제거 */
+  background-color: #f7c7cf;
+}
+
+.arrow-button.center .square-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #FFFFFF;
+}
+
+.arrow-button.center.active {
+  background-color: #F77777;
+}
+
 .arrow-center-placeholder {
   width: 50px;
   height: 50px;
