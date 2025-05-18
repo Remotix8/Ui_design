@@ -18,27 +18,6 @@ const TopicPanel = () => {
       textColor: '#D456FD',
       isFavorite: false
     },
-    {
-      name: '/odom',
-      category: 'sensor',
-      color: '#FFEBDD',
-      textColor: '#FD9A56',
-      isFavorite: false
-    },
-    {
-      name: '/tf',
-      category: 'transform',
-      color: '#CCF0EB',
-      textColor: '#00B69B',
-      isFavorite: false
-    },
-    {
-      name: '/scan',
-      category: 'sensor',
-      color: '#FFEBDD',
-      textColor: '#FD9A56',
-      isFavorite: false
-    }
   ]);
 
   const toggleFavorite = (index) => {
