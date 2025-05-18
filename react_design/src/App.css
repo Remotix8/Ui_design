@@ -45,3 +45,7 @@ body {
   flex-direction: column;
   gap: 16px;
 }
+
+.dashboard__clock {
+  display: absolute;
+}
