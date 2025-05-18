@@ -100,7 +100,17 @@
 
 /* 호버, 포커스 등 기존 스타일 유지 */
 .arrow-button:hover {
-  opacity: 0.8;
+  filter: brightness(0.9);
+}
+
+.arrow-button:active {
+  filter: brightness(0.75);
+}
+
+.arrow-button.active:hover,
+.arrow-button.active:active {
+  filter: brightness(0.85);
+  opacity: 1;
 }
 
 .arrow-button:focus {
@@ -111,4 +121,5 @@
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #E9ECEF;
+  pointer-events: none;
 }
