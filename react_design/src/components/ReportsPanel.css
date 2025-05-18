@@ -1,7 +1,7 @@
 /* 전체 패널 컨테이너 */
 .reports-panel {
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 1135px;          /* 필요에 맞게 조정하세요 */
   width: 320px;
   height: 265px;
