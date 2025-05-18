@@ -1,6 +1,6 @@
 .floating-arrow-controls {
   position: absolute;
-  left: 898px;
+  left: 915px;
   top: 461px;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,8 @@
 }
 
 .arrow-button {
-  width: 60px;       
-  height: 60px;      
+  width: 54px;       
+  height: 54px;      
   border: none;
   border-radius: 50%;
   background-color: #f7c7cf;
