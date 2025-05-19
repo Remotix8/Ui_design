@@ -3,10 +3,10 @@
 /* Container for ReportCard */
 .report-card {
   position: absolute;
-  top: 175px;
-  left: 40px;
-  width: 415px;
-  height: 210px;
+  top: 499px;
+  left: 1388px;
+  width: 100px;
+  height: 130px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
 /* Write button next to badge */
 .btn-primary {
   position: absolute;
-  top: 16px;
+  top: 60px;
   right: 20px; /* adjust to sit left of badge */
   background-color: #ff5d5d; /* indigo-800 */
   color: #fff;
@@ -49,7 +49,8 @@
   border-radius: 4px;
   padding: 8px 12px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .btn-primary:hover {
