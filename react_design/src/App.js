@@ -6,6 +6,7 @@ import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
 import ProfilePopup from './components/ProfilePopup';
 import Clock from './components/Clock';
+import CustomerQueueList from './components/CustomerQueueList';
 import StreamPanel from './components/StreamPanel';
 import TopicPanel from './components/TopicPanel';
 import BatteryPanel from './components/BatteryPanel';
@@ -23,9 +24,23 @@ function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   const profileUrl = "/assets/images/sample_profile.png";
+  
+  const [customers, setCustomers] = useState([
+    { id: 1, name: '민재' },
+    { id: 2, name: '다인' },
+    { id: 3, name: '준혁' }, 
+    { id: 4, name: '준하' },
+    { id: 5, name: '성언' },
+  ]);
+
+  // 2) 연결 클릭 시 실행될 콜백
+  const handleConnect = (customer) => {
+    console.log('연결할 고객:', customer);
+    // TODO: 실제 연결 로직 호출 (예: API 요청 등)
+  };
+
   // 모달 상태 추가
   const [isReportModalOpen, setReportModalOpen] = useState(false);
-
 
   return (
     <div className={`App ${showLoginModal || showRegisterModal ? 'locked-ui' : ''}`}>
@@ -122,6 +137,14 @@ function App() {
                 <SpeedPanel />
                 <PlatformControlPanel />
               </div>
+
+            {/* 3) Customer Queue List 삽입 */}
+            <div className="dashboard__queue">
+              <CustomerQueueList
+                customers={customers}
+                onConnect={handleConnect}
+              />
+            </div>
             </aside>
           </main>
 
