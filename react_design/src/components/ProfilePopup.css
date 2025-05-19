@@ -1,28 +1,55 @@
 .profile-popup {
   position: absolute;
-  top: 70px;
-  right: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  top: 80px;
+  right: 30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   z-index: 2000;
   width: 180px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  cursor: default;
 }
 
 .profile-popup-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 2px solid #ddd;
 }
 
 .profile-popup-name {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #222;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #111; 
+}
+
+.profile-email {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.profile-edit-button {
+  background-color: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+
+.profile-edit-button:hover {
+  background-color: #e0e0e0;
 }
