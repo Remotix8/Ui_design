@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import './Report.css';
 
-export default function ReportModal({ isOpen, onClose }) {
+export default function ReportModal({ isOpen, onClose, data }) {
   const [formData, setFormData] = useState({
-    receptionId: "",
-    reporterName: "",
-    handlerName: "",
-    reporterModel: "",
-    receptionDateTime: "",
-    actionDetails: ""
+    receptionId: data?.receptionId || "",
+    reporterName: data?.reporterName || "",
+    handlerName: data?.handlerName || "",
+    reporterModel: data?.reporterModel || "",
+    receptionDateTime: data?.receptionDateTime || "",
+    actionDetails: data?.actionDetails || ""
   });
 
   if (!isOpen) return null;

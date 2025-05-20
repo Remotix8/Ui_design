@@ -15,6 +15,7 @@ import PlatformControlPanel from './components/PlatformControlPanel';
 import ReportModal from "./components/Report";
 import ReportCard from './components/ReportCard';
 import NotificationCard from './components/ReportsPanel';
+import ReportsPanel from './components/ReportsPanel';
 
 function App() {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
@@ -24,6 +25,7 @@ function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   const profileUrl = "/assets/images/sample_profile.png";
+  const [selectedReport, setSelectedReport] = useState(null);
   
   const [customers, setCustomers] = useState([
     { id: 1, name: '민재' },
@@ -32,6 +34,7 @@ function App() {
     { id: 4, name: '준하' },
     { id: 5, name: '성언' },
   ]);
+
 
   // 2) 연결 클릭 시 실행될 콜백
   const handleConnect = (customer) => {
@@ -128,6 +131,11 @@ function App() {
                 />
               </div>
 
+              <ReportsPanel
+                //reports={dummyReports}
+                onSelectReport={(report) => setSelectedReport(report)}
+              />
+
               <div className="dashboard__topic">
                 <TopicPanel />
               </div>
@@ -155,7 +163,15 @@ function App() {
           {/* ReportModal 렌더링 */}
           {isReportModalOpen && (
             <ReportModal isOpen={isReportModalOpen} onClose={() => setReportModalOpen(false)} />
-      )}
+          )}
+
+          {selectedReport && (
+            <ReportModal
+              isOpen={true}
+              onClose={() => setSelectedReport(null)}
+              data={selectedReport}
+            />
+          )}
 
         </>
       )}
