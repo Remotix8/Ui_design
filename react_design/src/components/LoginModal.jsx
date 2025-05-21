@@ -34,12 +34,14 @@ function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        timeout: 15000  // 타임아웃 시간을 15초로 늘림
+        timeout: 5000
       });
 
       console.log('서버 응답:', JSON.stringify(response.data, null, 2));
 
-      if (response.data.access_token) {
+      if (response.data.error || !response.data.access_token) {
+        setError(response.data.message || '로그인에 실패했습니다.');
+      } else {
         // 토큰과 사용자 정보 저장
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('token_type', response.data.token_type);
@@ -48,8 +50,6 @@ function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
         // 로그인 상태 업데이트 및 모달 닫기
         onLogin(id);
         onClose();
-      } else {
-        setError(response.data.message || '로그인에 실패했습니다.');
       }
     } catch (err) {
       console.error('로그인 에러:', err.message);
