@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PlatformControlPanel.css';
 import FloatingArrowControls from './FloatingArrowControls';
 
-const PlatformControlPanel = () => {
+const PlatformControlPanel = ({ onDisconnect, isConnected }) => {
   const [teleopMode, setTeleopMode] = useState(false);
   const [activeButtons, setActiveButtons] = useState({
     up: false,
@@ -13,8 +13,14 @@ const PlatformControlPanel = () => {
   });
 
   useEffect(() => {
+    if (!isConnected) {
+      setTeleopMode(false);
+    }
+  }, [isConnected]);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
-      if (!teleopMode) return;
+      if (!teleopMode || !isConnected) return;
 
       switch (e.key) {
         case 'ArrowUp':
@@ -43,7 +49,7 @@ const PlatformControlPanel = () => {
     };
 
     const handleKeyUp = (e) => {
-      if (!teleopMode) return;
+      if (!teleopMode || !isConnected) return;
 
       switch (e.key) {
         case 'ArrowUp':
@@ -74,22 +80,23 @@ const PlatformControlPanel = () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [teleopMode]);
+  }, [teleopMode, isConnected]);
 
   const handleMouseDown = (direction) => {
-    if (!teleopMode) return;
+    if (!teleopMode || !isConnected) return;
     setActiveButtons(prev => ({ ...prev, [direction]: true }));
     // TODO: Send corresponding platform command
   };
 
   const handleMouseUp = (direction) => {
-    if (!teleopMode) return;
+    if (!teleopMode || !isConnected) return;
     setActiveButtons(prev => ({ ...prev, [direction]: false }));
     // TODO: Stop corresponding platform movement
   };
 
   const handleEmergencyStop = () => {
-    // TODO: Implement emergency stop logic
+    onDisconnect();
+    
     setTeleopMode(false);
     setActiveButtons({
       up: false,
@@ -113,21 +120,23 @@ const PlatformControlPanel = () => {
                   type="checkbox"
                   checked={teleopMode}
                   onChange={(e) => setTeleopMode(e.target.checked)}
+                  disabled={!isConnected}
                 />
                 <span className="toggle-slider"></span>
               </label>
             </div>
             <button
-              className="emergency-stop"
+              className={`emergency-stop ${isConnected ? 'connected' : ''}`}
               onClick={handleEmergencyStop}
+              disabled={!isConnected}
             >
-              E-STOP
+              {isConnected ? 'Disconnection' : 'Not Connected'}
             </button>
           </div>
         </div>
       </div>
       <FloatingArrowControls
-        teleopMode={teleopMode}
+        teleopMode={teleopMode && isConnected}
         activeButtons={activeButtons}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}

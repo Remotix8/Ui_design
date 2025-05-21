@@ -9,14 +9,14 @@ const TopicPanel = () => {
       category: 'camera',
       color: '#DEE8FF',
       textColor: '#5A8CFF',
-      isFavorite: false
+      isFavorite: true
     },
     {
       name: '/cmd_vel',
       category: 'control',
       color: '#F6DDFF',
       textColor: '#D456FD',
-      isFavorite: false
+      isFavorite: true
     },
   ]);
 

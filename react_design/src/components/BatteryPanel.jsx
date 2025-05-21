@@ -3,10 +3,16 @@ import './BatteryPanel.css';
 import { FaBatteryThreeQuarters } from 'react-icons/fa';
 import ROSLIB from 'roslib';
 
-const BatteryPanel = () => {
+const BatteryPanel = ({ isConnected }) => {
   const [batteryPercentage, setBatteryPercentage] = useState('--');
 
   useEffect(() => {
+    // 연결되지 않은 상태면 배터리 값을 '--'로 설정
+    if (!isConnected) {
+      setBatteryPercentage('--');
+      return;
+    }
+
     // Create a connection to the ROS server
     const ros = new ROSLIB.Ros({
       url: 'ws://172.16.131.93:9090'
@@ -34,15 +40,21 @@ const BatteryPanel = () => {
     });
 
     batteryTopic.subscribe((message) => {
-      setBatteryPercentage(`${Math.round(message.percentage)}%`);
+      if (isConnected) {  // 연결된 상태일 때만 배터리 값 업데이트
+        setBatteryPercentage(`${Math.round(message.percentage)}%`);
+      }
     });
 
     // Cleanup subscription on component unmount
     return () => {
-      batteryTopic.unsubscribe();
-      ros.close();
+      if (batteryTopic) {
+        batteryTopic.unsubscribe();
+      }
+      if (ros) {
+        ros.close();
+      }
     };
-  }, []);
+  }, [isConnected]);  // isConnected를 의존성 배열에 추가
 
   return (
     <div className="battery-container">

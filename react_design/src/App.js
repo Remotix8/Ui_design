@@ -17,6 +17,7 @@ import ReportCard from './components/ReportCard';
 import NotificationCard from './components/ReportsPanel';
 import ReportsPanel from './components/ReportsPanel';
 import axios from 'axios';
+import ROSLIB from 'roslib';
 
 function App() {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
@@ -27,14 +28,68 @@ function App() {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   const profileUrl = "/assets/images/sample_profile.png";
   const [selectedReport, setSelectedReport] = useState(null);
+  const [customers, setCustomers] = useState([]);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
   
-  const [customers, setCustomers] = useState([
-    { id: 1, name: '민재' },
-    { id: 2, name: '다인' },
-    { id: 3, name: '준혁' }, 
-    { id: 4, name: '준하' },
-    { id: 5, name: '성언' },
-  ]);
+  // ROS 연결 및 토픽 구독
+  useEffect(() => {
+    const ros = new ROSLIB.Ros({ url: 'ws://172.16.131.93:9090' });
+    
+    ros.on('connection', () => {
+      console.log('Connected to ROS websocket server.');
+      
+      // JSON 데이터 토픽 구독
+      const jsonTopic = new ROSLIB.Topic({
+        ros: ros,
+        name: '/json_data',
+        messageType: 'std_msgs/String'
+      });
+      
+      jsonTopic.subscribe((message) => {
+        try {
+          // 토픽에서 받은 JSON 문자열 파싱
+          const jsonData = JSON.parse(message.data);
+          console.log('Received JSON data:', jsonData);
+          
+          // 고유 ID 생성
+          const customerId = Date.now();
+          
+          // 새 고객 추가 (큐의 끝에 추가)
+          setCustomers(prevCustomers => {
+            const newCustomers = [
+              ...prevCustomers,
+              { 
+                id: customerId,
+                name: jsonData.name,
+                region: jsonData.region,
+                model: jsonData.model,
+                timestamp: jsonData.timestamp,
+              }
+            ];
+            
+            // 최대 10명까지만 유지
+            return newCustomers.slice(-10);
+          });
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      });
+    });
+    
+    ros.on('error', (error) => {
+      console.error('Error connecting to ROS websocket server:', error);
+    });
+    
+    ros.on('close', () => {
+      console.warn('Connection to ROS websocket server closed.');
+    });
+    
+    return () => {
+      if (ros) {
+        ros.close();
+      }
+    };
+  }, []);
 
   // 토큰 확인 및 자동 로그인
   useEffect(() => {
@@ -84,10 +139,21 @@ function App() {
     setShowLoginModal(true);
   };
 
-  // 2) 연결 클릭 시 실행될 콜백
+  // 고객 연결 시 실행될 콜백
   const handleConnect = (customer) => {
     console.log('연결할 고객:', customer);
-    // TODO: 실제 연결 로직 호출 (예: API 요청 등)
+    setSelectedCustomer(customer);  // 선택된 고객 정보 저장
+    
+    // 연결된 고객을 리스트에서 제거
+    setCustomers(prevCustomers => 
+      prevCustomers.filter(c => c.id !== customer.id)
+    );
+  };
+
+  // 연결 해제 시 실행될 콜백
+  const handleDisconnect = () => {
+    console.log('고객 연결 해제');
+    setSelectedCustomer(null);  // 선택된 고객 정보 초기화
   };
 
   // 모달 상태 추가
@@ -147,7 +213,7 @@ function App() {
 
           <main className="dashboard">
             <section className="dashboard__left">
-              <StreamPanel />
+              <StreamPanel selectedCustomer={selectedCustomer} />
             </section>
 
             <section className="dashboard__clock">
@@ -178,15 +244,16 @@ function App() {
               </div>
 
               <div className="dashboard__panels">
-                <BatteryPanel />
-                <SpeedPanel />
-                <PlatformControlPanel />
+                <BatteryPanel isConnected={!!selectedCustomer} />
+                <SpeedPanel isConnected={!!selectedCustomer} />
+                <PlatformControlPanel onDisconnect={handleDisconnect} isConnected={!!selectedCustomer} />
               </div>
 
               <div className="dashboard__queue">
                 <CustomerQueueList
                   customers={customers}
                   onConnect={handleConnect}
+                  isConnected={!!selectedCustomer}
                 />
               </div>
             </aside>

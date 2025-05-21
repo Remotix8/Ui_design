@@ -119,18 +119,33 @@ input:checked + .toggle-slider:before {
 }
 
 .emergency-stop {
-  width: 100%;
   padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
   border: none;
-  background-color: #FF6B6B;
-  color: white;
-  transition: all 0.2s ease;
+  border-radius: 4px;
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.emergency-stop:hover {
-  background-color: #FA5252;
+.emergency-stop.connected {
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+.emergency-stop.connected:hover {
+  background-color: #d32f2f;
+}
+
+.emergency-stop:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.toggle-switch input:disabled + .toggle-slider {
+  background-color: #ccc;
+  cursor: not-allowed;
 } 
