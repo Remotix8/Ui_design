@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import SettingsModal from './components/SettingsModal';
@@ -16,6 +16,7 @@ import ReportModal from "./components/Report";
 import ReportCard from './components/ReportCard';
 import NotificationCard from './components/ReportsPanel';
 import ReportsPanel from './components/ReportsPanel';
+import axios from 'axios';
 
 function App() {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
@@ -35,6 +36,53 @@ function App() {
     { id: 5, name: '성언' },
   ]);
 
+  // 토큰 확인 및 자동 로그인
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const savedUserId = localStorage.getItem('user');
+    if (token && savedUserId) {
+      setIsLogin(true);
+      setUserId(savedUserId);
+      setShowLoginModal(false);
+    }
+  }, []);
+
+  // axios 인터셉터 설정
+  useEffect(() => {
+    const interceptor = axios.interceptors.request.use(
+      config => {
+        const token = localStorage.getItem('token');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      error => {
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.request.eject(interceptor);
+    };
+  }, []);
+
+  const handleLogin = (username) => {
+    console.log('로그인 시도:', username);
+    setIsLogin(true);
+    setUserId(username);
+    setShowLoginModal(false);
+    console.log('로그인 상태:', { isLogin: true, userId: username });
+  };
+
+  const handleLogout = () => {
+    setIsLogin(false);
+    setUserId('');
+    localStorage.removeItem('token');
+    localStorage.removeItem('token_type');
+    localStorage.removeItem('user');
+    setShowLoginModal(true);
+  };
 
   // 2) 연결 클릭 시 실행될 콜백
   const handleConnect = (customer) => {
@@ -53,11 +101,7 @@ function App() {
           <div className="global-lock-screen" />
           <LoginModal
             onClose={() => setShowLoginModal(false)}
-            onLogin={(id) => {
-              setIsLogin(true);
-              setUserId(id);
-              setShowLoginModal(false);
-            }}
+            onLogin={handleLogin}
             onSwitchToRegister={() => {
               setShowLoginModal(false);
               setShowRegisterModal(true);
@@ -65,7 +109,6 @@ function App() {
           />
         </>
       )}
-
 
       {showRegisterModal && (
         <>
@@ -89,11 +132,7 @@ function App() {
             userId={userId}
             profileUrl={profileUrl}
             onLoginClick={() => setShowLoginModal(true)}
-            onLogout={() => {
-              setIsLogin(false);
-              setUserId('');
-              setShowLoginModal(true);
-            }}
+            onLogout={handleLogout}
             showProfilePopup={showProfilePopup}
             setShowProfilePopup={setShowProfilePopup}
           />
@@ -119,7 +158,6 @@ function App() {
               <div className="dashboard__topRow">
                 <ReportCard
                   pendingCount={3}
-                  //Report모달 열기기
                   onWriteClick={() => setReportModalOpen(true)}
                 />
                 <NotificationCard
@@ -132,7 +170,6 @@ function App() {
               </div>
 
               <ReportsPanel
-                //reports={dummyReports}
                 onSelectReport={(report) => setSelectedReport(report)}
               />
 
@@ -146,13 +183,12 @@ function App() {
                 <PlatformControlPanel />
               </div>
 
-            {/* 3) Customer Queue List 삽입 */}
-            <div className="dashboard__queue">
-              <CustomerQueueList
-                customers={customers}
-                onConnect={handleConnect}
-              />
-            </div>
+              <div className="dashboard__queue">
+                <CustomerQueueList
+                  customers={customers}
+                  onConnect={handleConnect}
+                />
+              </div>
             </aside>
           </main>
 
@@ -160,7 +196,6 @@ function App() {
             <SettingsModal onClose={() => setSettingsOpen(false)} />
           )}
 
-          {/* ReportModal 렌더링 */}
           {isReportModalOpen && (
             <ReportModal isOpen={isReportModalOpen} onClose={() => setReportModalOpen(false)} />
           )}
@@ -172,7 +207,6 @@ function App() {
               data={selectedReport}
             />
           )}
-
         </>
       )}
     </div>
