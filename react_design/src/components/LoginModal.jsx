@@ -58,7 +58,11 @@ function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
       } else if (err.response) {
         // 서버가 응답을 반환했지만 에러 상태인 경우
         console.error('서버 에러 응답:', JSON.stringify(err.response.data, null, 2));
-        setError(err.response.data?.message || err.response.data?.detail || '로그인에 실패했습니다.');
+        if (err.response.data?.error) {
+          setError(err.response.data.message || '로그인에 실패했습니다.');
+        } else {
+          setError(err.response.data?.message || err.response.data?.detail || '로그인에 실패했습니다.');
+        }
       } else if (err.request) {
         // 요청은 보냈지만 응답을 받지 못한 경우
         console.error('응답 없음:', err.message);
