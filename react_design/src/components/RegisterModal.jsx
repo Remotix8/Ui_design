@@ -82,7 +82,12 @@ function RegisterModal({ onClose, onSwitchToLogin }) {
           {isLoading ? '회원가입 중...' : '회원가입'}
         </button>
         
-        <button className="close-button" onClick={onSwitchToLogin}>로그인하기</button>
+        <p
+          className="signup-link"
+          onClick={onSwitchToLogin}
+        >
+          로그인하기
+        </p>
 
       </div>
     </div>
