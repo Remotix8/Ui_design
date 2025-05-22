@@ -30,6 +30,7 @@ function App() {
   const [selectedReport, setSelectedReport] = useState(null);
   const [customers, setCustomers] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);  // 새로고침 트리거용 state
   
   // ROS 연결 및 토픽 구독
   useEffect(() => {
@@ -159,6 +160,11 @@ function App() {
   // 모달 상태 추가
   const [isReportModalOpen, setReportModalOpen] = useState(false);
 
+  // Report 컴포넌트에서 호출할 새로고침 함수
+  const handleReportUpdate = () => {
+    setRefreshTrigger(prev => prev + 1);  // 값을 변경하여 ReportsPanel의 useEffect 트리거
+  };
+
   return (
     <div className={`App ${showLoginModal || showRegisterModal ? 'locked-ui' : ''}`}>
       {/* 로그인/회원가입 모달 띄우기 (화면 잠금) */}
@@ -237,6 +243,7 @@ function App() {
 
               <ReportsPanel
                 onSelectReport={(report) => setSelectedReport(report)}
+                onRefreshNeeded={refreshTrigger}
               />
 
               <div className="dashboard__topic">
@@ -263,15 +270,15 @@ function App() {
             <SettingsModal onClose={() => setSettingsOpen(false)} />
           )}
 
-          {isReportModalOpen && (
-            <ReportModal isOpen={isReportModalOpen} onClose={() => setReportModalOpen(false)} />
-          )}
-
-          {selectedReport && (
+          {(isReportModalOpen || selectedReport) && (
             <ReportModal
               isOpen={true}
-              onClose={() => setSelectedReport(null)}
+              onClose={() => {
+                setReportModalOpen(false);
+                setSelectedReport(null);
+              }}
               data={selectedReport}
+              onUpdate={handleReportUpdate}
             />
           )}
         </>
