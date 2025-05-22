@@ -98,4 +98,15 @@
     margin-right: auto;
   }
   
+  .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 8px;
+    background-color: #ffebee;
+    border-radius: 4px;
+    border: 1px solid #ffcdd2;
+  }
+  
   
